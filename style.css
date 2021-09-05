@@ -104,11 +104,6 @@ input {
     outline: none;
 }
 
-input[placeholder*="Id"], 
-input[placeholder="Quantity"],
-input[placeholder="Price"] {
-    width: 10%;
-}
 
 
 input:focus {
@@ -177,7 +172,7 @@ input:focus {
     background-color: #007ee5;
     color: #fff;
     outline: none;
-    flex-grow: 1;
+    flex: .5;
     border: none;
     font-size: 1.3rem;
     border-radius: 10px;
@@ -218,6 +213,7 @@ input:focus {
 }
 
 .found {
+    margin: -4rem auto 2rem auto;
     border-radius: 10px;
     margin: auto;
     width: 30%;
@@ -230,9 +226,20 @@ input:focus {
 }
 
 .not-found {
+    margin: -4rem auto 2rem auto;
     margin: auto;
     width: 30%;
     background-color: tomato;
+    padding: 1rem;
+    color: #fff;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.warning {
+    margin: -4rem auto 2rem auto;
+    width: 30%;
+    background-color: orange;
     padding: 1rem;
     color: #fff;
     font-size: 1.2rem;

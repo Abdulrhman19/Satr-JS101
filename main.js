@@ -39,6 +39,7 @@ const update = document.querySelector("#update");
 const add = document.querySelector("#add");
 const show_choices = document.querySelector(".show-choices");
 const existence = document.getElementById("existence");
+const notifications = document.getElementById("notifications")
 
 
 
@@ -51,6 +52,7 @@ document.querySelector(".choices").addEventListener("click", (e) => {
     show_choices.classList.add("hidden");
     search.classList.add("hidden");
     reset(existence)
+    reset(notifications)
     update.classList.add("hidden");
     buy.classList.add("hidden");
     add.classList.add("hidden");
@@ -82,9 +84,9 @@ const displayBooks = (row) => {
 const reset = (element) => {
   // Remove all classes from element
   if(element.classList.length) {
-    element.classList.remove(element.classList)
-    element.innerText = ''
-  }
+      element.classList.remove(element.classList)
+      element.innerText = ''
+    }
 }
 
 
@@ -126,14 +128,44 @@ const searchForBook = () => {
 const buyBook = () => {};
 
 const addNewBook = () => {
+  const addBook = document.querySelector('#addBook')
+  const addId = document.getElementById("addId")
+  const newId = booksStore.length+1
+  addId.placeholder = `Id: ${newId}`
+  
 
+  addBook.addEventListener('click', (event) => {
+    const addTitle = document.getElementById("addTitle").value.trim();
+    const addAuthor = document.getElementById("addAuthor").value.trim();
+    const addPrice = document.getElementById("addPrice").value.trim();
+    const addQuantity = document.getElementById("addQuantity").value.trim();
+
+    if(addTitle && addAuthor && addPrice && addQuantity) {
+      const newBook = [newId, addTitle, addAuthor, addPrice, addQuantity]
+      booksStore.push(newBook)
+      if(booksStore.length === newId) {
+        notifications.innerText = `${addTitle} book has been added`
+        notifications.classList.add('found')
+        // reset(elements=[addId, addTitle, addAuthor, addPrice, addQuantity])
+        insertItemToTable(newBook)
+      }
+    } else {
+      notifications.innerText = "To add a new book you should fill all of the fields below!"
+      notifications.classList.add('warning')
+    }
+  })
 };
 
 const updateExistingBook = () => {};
 
-booksStore.forEach((e, index) => {
-  displayBooks(index, e);
-});
+const insertItemToTable = (item) => {
+  const tbody = document.getElementById("row");
+  let newRow = tbody.insertRow(-1);
+  for (let i = 0; i < item.length; i++) {
+    newRow.insertCell(i).innerHTML = `<td>${item[i]}</td>`;
+  }
+}
+
 
 // Iterate over the books
 for (let outter = 0; outter < booksStore.length; outter++) {

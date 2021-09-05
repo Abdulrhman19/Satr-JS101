@@ -44,6 +44,7 @@
     </div>
   </div>
   <div id="existence"></div>
+  <div id="notifications"></div>
 
   <section id="search" class="hidden">
     <div class="hint">Search by:</div>
@@ -58,8 +59,12 @@
   <section id="add" class="hidden">
     <div class="hint">Enter the following fields to add a book</div>
     <div class="fields">
-      <input type="text" id="addTitle" placeholder="title" />
-      <input type="text" id="addAuthor" placeholder="Author" />
+      <input type="text" id="addId" disabled/>
+      <input type="text" id="addTitle" placeholder="Book Title" />
+      <input type="text" id="addAuthor" placeholder="Book Author" />
+      <input type="text" id="addPrice" placeholder="Book Price" />
+      <input type="text" id="addQuantity" placeholder="Book Quantity" />
+      <button id="addBook" class="btn">Add</button>
     </div>
   </section>
 
