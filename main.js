@@ -40,6 +40,7 @@ const add = document.querySelector("#add");
 const show_choices = document.querySelector(".show-choices");
 const existence = document.getElementById("existence");
 const notifications = document.getElementById("notifications")
+const invoice = document.querySelector('.invoice')
 
 
 
@@ -53,6 +54,7 @@ document.querySelector(".choices").addEventListener("click", (e) => {
     search.classList.add("hidden");
     reset(existence)
     reset(notifications)
+    reset(invoice)
     update.classList.add("hidden");
     buy.classList.add("hidden");
     add.classList.add("hidden");
@@ -81,12 +83,17 @@ const displayBooks = (row) => {
   }
 };
 
+const destroyOldRows = () => {
+  const tbody = document.getElementById("row");
+  row.innerHTML = ''
+}
+
 const reset = (element) => {
   // Remove all classes from element
-  if(element.classList.length) {
-      element.classList.remove(element.classList)
-      element.innerText = ''
-    }
+  if (element.classList.length) {
+    element.classList.remove(element.classList)
+    element.innerText = ''
+  }
 }
 
 
@@ -111,9 +118,8 @@ const searchForBook = () => {
         ) {
           existence.classList.remove("not-found");
           existence.classList.add("found");
-          existence.innerText = `Book found. Please look at the table above at row number ${
-            i + 1
-          }`;
+          existence.innerText = `Book found. Please look at the table above at row number ${i + 1
+            }`;
 
           break;
         } else {
@@ -125,14 +131,51 @@ const searchForBook = () => {
   });
 };
 
-const buyBook = () => {};
+const buyBook = () => {
+  const buy = document.querySelector('#submitBuy')
+  buy.addEventListener('click', () => {
+    const id = document.querySelector('#buyId').value.trim()
+    const quantity = document.querySelector('#buyQuantity').value.trim()
+    const balance = document.querySelector('#balance').value.trim()
+
+    let record = []
+    let rowNumber = 0
+    for (let i = 0; i < booksStore.length; i++) {
+      if (booksStore[i].includes(id)) {
+        record.push(booksStore[i])
+        rowNumber = i
+      }
+    }
+
+    if (id && quantity && balance) {
+      const total = eval(`${quantity}*${record[0][3]}`)
+      if (parseFloat(balance) > parseFloat(total)) {
+        reset(notifications)
+        record[0][4] = eval(`${record[0][4]}-${quantity}`)
+        console.log(record[0]);
+        const title = record[0][1]
+        const author = record[0][2]
+        const price = record[0][3]
+        createInvoice(title, total, quantity, price)
+        prepareRowsTodDisplay()
+      } else {
+        notifications.innerText = "You did not have enough money"
+        notifications.classList.add('warning')
+      }
+
+    } else {
+      notifications.innerText = "Please fill all the fields"
+      notifications.classList.add('warning')
+    }
+  })
+};
 
 const addNewBook = () => {
   const addBook = document.querySelector('#addBook')
   const addId = document.getElementById("addId")
-  const newId = booksStore.length+1
+  const newId = booksStore.length + 1
   addId.placeholder = `Id: ${newId}`
-  
+
 
   addBook.addEventListener('click', (event) => {
     const addTitle = document.getElementById("addTitle").value.trim();
@@ -140,10 +183,10 @@ const addNewBook = () => {
     const addPrice = document.getElementById("addPrice").value.trim();
     const addQuantity = document.getElementById("addQuantity").value.trim();
 
-    if(addTitle && addAuthor && addPrice && addQuantity) {
+    if (addTitle && addAuthor && addPrice && addQuantity) {
       const newBook = [newId, addTitle, addAuthor, addPrice, addQuantity]
       booksStore.push(newBook)
-      if(booksStore.length === newId) {
+      if (booksStore.length === newId) {
         notifications.innerText = `${addTitle} book has been added`
         notifications.classList.add('found')
         // reset(elements=[addId, addTitle, addAuthor, addPrice, addQuantity])
@@ -156,7 +199,7 @@ const addNewBook = () => {
   })
 };
 
-const updateExistingBook = () => {};
+const updateExistingBook = () => { };
 
 const insertItemToTable = (item) => {
   const tbody = document.getElementById("row");
@@ -167,11 +210,33 @@ const insertItemToTable = (item) => {
 }
 
 
-// Iterate over the books
-for (let outter = 0; outter < booksStore.length; outter++) {
-  let row = [];
-  for (let inner = 0; inner < booksStore.length; inner++) {
-    [row.push(booksStore[outter][inner])];
-  }
-  displayBooks(row);
+const createInvoice = (title, total, quantity, price) => {
+  const titleElement = document.querySelector('.title')
+  const quantityElement = document.querySelector('.quantity')
+  const priceElement = document.querySelector('.price')
+  const totalElement = document.querySelector('.total')
+
+  titleElement.innerText = `Book title: ${title}`
+  quantityElement.innerText = `Quantity: ${quantity}`
+  priceElement.innerText = `Price: ${price}`
+  totalElement.innerText = `Total: ${price} * ${quantity} = ${eval(`${price}*${quantity}`)}`
+  invoice.classList.remove('hidden')
 }
+
+
+// Iterate over the books
+const prepareRowsTodDisplay = () => {
+  destroyOldRows()
+  for (let outter = 0; outter < booksStore.length; outter++) {
+    let row = [];
+    for (let inner = 0; inner < booksStore.length; inner++) {
+      [row.push(booksStore[outter][inner])];
+    }
+    displayBooks(row);
+  }  
+}
+
+prepareRowsTodDisplay()
+
+
+

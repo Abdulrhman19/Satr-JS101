@@ -248,6 +248,27 @@ input:focus {
 
 .hidden {
     display: none;
-    visibility: hidden;
-    
+    visibility: hidden;   
+}
+
+.invoice {
+    background-color: rgba(255, 255, 255, 0.658);
+    width: 40%;
+    margin: 4rem auto 0 auto;
+    padding: 2rem;
+    border: 3px solid rgba(96, 236, 96, 0.651);
+    border-style: dashed;
+}
+
+.invoice > div {
+    padding: .5rem;
+    font-size: 1.3rem;
+}
+
+.invoice .head {
+    background-color: rgba(96, 236, 96, 0.651);
+    color: #fff;
+    font-weight: bolder;
+    font-size: 1.3rem;
+    text-align: center;
 }
