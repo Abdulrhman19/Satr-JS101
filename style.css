@@ -7,10 +7,14 @@
 }
 
 body {
-    background-color: rgba(213, 255, 255, 0.877);
+    height: 100%;
+    background-color: rgba(213, 255, 255, 0.726);
     width: 1024px;
+    max-width: 1024px;
+    min-width:min-content;
     margin: auto;
-    font-family: 'Comfortaa', cursive;
+    padding: 2rem 0;
+    font-family: 'Comfortaa', cursive, sans-serif;
     border-radius: 20px;
     box-shadow: 4px 2px 10px rgba(197, 221, 221, 0.5),
                 -1px -1px 10px rgba(197, 221, 221, 0.5);
@@ -19,7 +23,7 @@ body {
 
 
 h1 {
-    margin-top: 3rem ;
+    margin: 3rem 0 4rem 0 ;
     font-size: 2.4rem;
     color:rgb(69, 89, 90);
     display: flex;
@@ -32,6 +36,7 @@ table {
     margin: 2rem auto 0 auto ;
     padding: 2rem;
     border-collapse: collapse;
+    border:2px solid rgba(197, 221, 221, 0.9);
 }
 
 table thead {
@@ -40,18 +45,75 @@ table thead {
 
 table thead td {
     font-size: 1.8rem;
-    padding-bottom: .5rem;
+    padding: .9rem;
 }
 
 table thead tr {
     border-bottom:2px solid rgba(197, 221, 221, 0.9);
 }
 
+table #row tr:hover{
+    background-color: rgba(188, 243, 243, 0.9);
+    transition: .25s ease-out;
+}
+
 table #row tr >td{
-    padding: 1rem;  
+    padding: 2rem;  
     text-align: center;
     font-size: 1.4rem;
-    color:rgba(69, 89, 90, 0.418);}
+    color:rgba(69, 89, 90, 0.705);
+}
+
+section {
+    width: 80%;
+    margin: auto;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+section .fields {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+section .fields div {
+    margin: 1rem 0;
+    display: flex;
+}
+
+section .fields div > input {
+    width: 22%;
+    margin: 0 1rem;
+}
+
+section .fields div > button {
+    flex:2;
+}
+
+input {
+    width: 30%;
+    padding: 1rem;
+    font-size: 1.4rem;
+    border: 2px solid rgb(188, 243, 243);
+    border-radius: 10px;
+    outline: none;
+}
+
+input[placeholder*="Id"], 
+input[placeholder="Quantity"],
+input[placeholder="Price"] {
+    width: 10%;
+}
+
+
+input:focus {
+    box-shadow: 2px 2px 8px rgb(116, 214, 214);;
+}
 
 
 /* UTILITEZ */
@@ -85,3 +147,100 @@ table #row tr >td{
     color:rgb(69, 89, 90)
 }
 
+.choices .choices-items{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: auto;
+    padding-bottom: 4rem;
+}
+
+.choices  .choices-items > div {
+    font-size: 1.6rem;
+    background-color: #007ee5;
+    color: #fff;
+    padding: 2rem;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.choices .choices-items > div:hover {
+    cursor: pointer;
+    transition: .5s ease;
+    background-color: rgba(213, 255, 255, 0.877);
+    border:1px solid #007ee5;
+    color: #007ee5;
+}
+
+.btn {
+    cursor: pointer;
+    background-color: #007ee5;
+    color: #fff;
+    outline: none;
+    flex-grow: 1;
+    border: none;
+    font-size: 1.3rem;
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.btn:hover {
+    background-color: #0067bb;
+}
+
+.show-choices {
+    cursor: pointer;
+    padding: 1.5rem;
+    font-size: 1.6rem;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    background-color: #007ee5;
+    color: #fff;
+    width: 15rem;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.show-choices:hover {
+    cursor: pointer;
+    transition: .5s ease;
+    background-color: rgba(213, 255, 255, 0.877);
+    border:1px solid #007ee5;
+    color: #007ee5;
+}
+
+.hint {
+    font-size: 1.4rem;
+    margin-bottom:1rem;
+    margin-left: .3rem;
+}
+
+.found {
+    border-radius: 10px;
+    margin: auto;
+    width: 30%;
+    background-color: rgb(96, 236, 96);
+    padding: 1rem;
+    color: #fff;
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: bolder;
+}
+
+.not-found {
+    margin: auto;
+    width: 30%;
+    background-color: tomato;
+    padding: 1rem;
+    color: #fff;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+    visibility: hidden;
+    
+}

@@ -1,35 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bookstore</title>
 
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="header">
-      <img class="icon" src="./images/full-logo.svg" />
-      <div class="border"></div>
-      <div class="course-name">JavaScript 101</div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bookstore</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="header">
+    <img class="icon" src="./images/full-logo.svg" />
+    <div class="border"></div>
+    <div class="course-name">JavaScript 101</div>
+  </div>
+
+  <h1>Satr | Bookstore</h1>
+
+  <table  id="books">
+    <thead>
+      <tr>
+        <td>Id</td>
+        <td>Name</td>
+        <td>Author</td>
+        <td>Price</td>
+        <td>Quantity</td>
+      </tr>
+    </thead>
+    <tbody id="row"></tbody>
+  </table>
+
+  <h1>Please choose what you want</h1>
+
+  <div class="choices">
+    <div class="show-choices hidden">Show choices</div>
+    <div class="choices-items">
+      <div onclick="searchForBook()">Search for a book</div>
+      <div onclick="addNewBook()">Add a new book</div>
+      <div onclick="updateExistingBook()">update or delete a book</div>
+      <div onclick="buyBook()">Buy a book</div>
     </div>
+  </div>
+  <div id="existence"></div>
 
-    <h1>Satr | Bookstore</h1>
+  <section id="search" class="hidden">
+    <div class="hint">Search by:</div>
+    <div class="fields">
+      <input type="text" id="searchId" placeholder="Book Id" />
+      <input type="text" id="searchTitle" placeholder="title" />
+      <input type="text" id="searchAuthor" placeholder="Author" />
+      <button id="submitSearch" class="btn">Search</button>
+    </div>
+  </section>
 
-    <table id="books">
-      <thead>
-        <tr>
-          <td>Id</td>
-          <td>Name</td>
-          <td>Author</td>
-          <td>Price</td>
-          <td>Quantity</td>
-        </tr>
-      </thead>
-      <tbody id="row"></tbody>
-    </table>
+  <section id="add" class="hidden">
+    <div class="hint">Enter the following fields to add a book</div>
+    <div class="fields">
+      <input type="text" id="addTitle" placeholder="title" />
+      <input type="text" id="addAuthor" placeholder="Author" />
+    </div>
+  </section>
 
-    <script src="main.js"></script>
-  </body>
+  <section id="update" class="hidden">
+    <div class="hint">Do you want to update or delete ?</div>
+    <div class="fields">
+      <input type="text" id="updateId" placeholder="Book Id" />
+      <input type="text" id="updateTitle" placeholder="title" />
+      <input type="text" id="updateAuthor" placeholder="Author" />
+      <input type="text" id="updatePrice" placeholder="Price" />
+      <input type="text" id="updateQuantity" placeholder="Quantity" />
+      <button id="updateSearch" class="btn">update</button>
+    </div>
+  </section>
+
+  <section id="buy" class="hidden">
+    <div class="hint">Look at the table above. Which book you want to buy ?</div>
+    <div class="fields">
+      <input type="text" id="buyId" placeholder="Book Id" />
+      <button id="submitBuy" class="btn">Buy</button>
+    </div>
+  </section>
+
+  <script src="main.js"></script>
+</body>
+
 </html>
