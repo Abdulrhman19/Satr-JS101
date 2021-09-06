@@ -38,8 +38,8 @@
       <div class="choices-items">
         <div onclick="searchForBook()">Search for a book</div>
         <div onclick="addNewBook()">Add a new book</div>
-        <div onclick="updateExistingBook()">update or delete a book</div>
         <div onclick="buyBook()">Buy a book</div>
+        <div onclick="updateOrDelete()">Update or delete a book</div>
       </div>
     </div>
     <div id="existence"></div>
@@ -67,18 +67,6 @@
       </div>
     </section>
 
-    <section id="update" class="hidden">
-      <div class="hint">Do you want to update or delete ?</div>
-      <div class="fields">
-        <input type="text" id="updateId" placeholder="Book Id" />
-        <input type="text" id="updateTitle" placeholder="title" />
-        <input type="text" id="updateAuthor" placeholder="Author" />
-        <input type="text" id="updatePrice" placeholder="Price" />
-        <input type="text" id="updateQuantity" placeholder="Quantity" />
-        <button id="updateSearch" class="btn">update</button>
-      </div>
-    </section>
-
     <section id="buy" class="hidden">
       <div class="hint">
         Look at the table above. Which book you want to buy ?
@@ -93,12 +81,50 @@
         <input type="text" id="balance" placeholder="Your Current Balance" />
         <button id="submitBuy" class="btn">Buy</button>
       </div>
-      <div class="invoice hidden">
+      <div id="invoice" class="hidden">
         <div class="head">Invoice</div>
         <div class="title"></div>
         <div class="quantity"></div>
         <div class="price"></div>
         <div class="total"></div>
+      </div>
+    </section>
+
+    <section id="selection" class="hidden">
+      <div class="container">
+        <div class="hint">Do you want to delete of update ?</div>
+        <ul id="listenForClick">
+          <li>
+            <input type="radio" id="updateBook" name="selection" />
+            <label for="updateBook">Update</label>
+            <div class="check"></div>
+          </li>
+          <li>
+            <input type="radio" id="deleteBook" name="selection" />
+            <label for="deleteBook">Delete</label>
+            <div class="check"><div class="inside"></div></div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="updateBookSection" class="hidden">
+      <div class="hint">Enter the book Id to get all details for a book</div>
+      <div>
+        <input type="text" id="updateId" placeholder="Book Id" />
+        <input type="text" id="updateTitle" placeholder="Book Title" />
+        <input type="text" id="updateAuthor" placeholder="Book Author" />
+        <input type="text" id="updatePrice" placeholder="Book Price" />
+        <input type="text" id="updateQuantity" placeholder="Book Quantity" />
+        <button id="updateBookBtn" class="btn">update</button>    
+      </div>
+    </section>
+
+    <section id="deleteBookSection" class="hidden">
+      <div class="hint">Enter book id to delete it; look at the table above if you need help</div>
+      <div>
+        <input type="text" id="deleteId" placeholder="Book Id" />
+        <button id="deleteBookBtn" class="btn">Delete</button>    
       </div>
     </section>
 
