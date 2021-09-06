@@ -287,6 +287,7 @@ const deleteBook = () =>{
         } else {
           notifications.innerText = "Book with this id not found"
           notifications.classList.add('warning')
+          reset(notifications)
         }
       }
     }
@@ -321,7 +322,7 @@ const prepareRowsTodDisplay = () => {
   destroyOldRows()
   for (let outter = 0; outter < booksStore.length; outter++) {
     let row = [];
-    for (let inner = 0; inner < booksStore.length; inner++) {
+    for (let inner = 0; inner < booksStore[outter].length; inner++) {
       [row.push(booksStore[outter][inner])];
     }
     displayBooks(row);
